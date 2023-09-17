@@ -20,6 +20,16 @@ namespace WebApplication2.Controllers
             _configuration = configuration;
         }
 
+        [HttpPost]
+        public IActionResult HandleButtonClick()
+        {
+            // Выполните необходимую логику обработки нажатия кнопки здесь
+            // Этот метод будет вызван при отправке запроса с клиента
+
+            return Ok(); // Верните успешный результат
+        }
+
+
         public IDbConnection connection
         {
             get { return new SqlConnection(_configuration.GetConnectionString("DefaultConnection")); }

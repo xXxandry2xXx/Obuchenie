@@ -1,6 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<script>
+    document.getElementById("myButton").addEventListener("click", function () {
+        // Выполните AJAX-запрос на сервер
+        fetch("/Home/HandleButtonClick", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => {
+            if (response.ok) {
+                // Обработайте успешный ответ с сервера
+                console.log("Кнопка была нажата и обработана на сервере.");
+            }
+        }).catch(error => {
+            // Обработайте ошибку запроса
+            console.error("Произошла ошибка: " + error);
+        });
+    });
+</script>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -8,11 +27,15 @@
 </div>
 
 @foreach(var item in Model){
-    <div >
-        <div>Id:@item.id</div>
-        <div>Id:@item.name</div>
-        <div>Id:@item.balanc</div>
-        <div>Id:@item.Creatad</div>
+    <div d="myDiv" runat="server">
+        <div>Id: @item.id</div>
+        <div>Имя: @item.name</div>
+        <div>Баланс: @item.balanc</div>
+        <div>Дата создания: @item.Creatad</div>
+
+        @*<form method="post" asp-action="HandleButton">
+            <button type="submit">Нажмите меня</button>
+        </form>      *@  
         <hr />
     </div>
     
